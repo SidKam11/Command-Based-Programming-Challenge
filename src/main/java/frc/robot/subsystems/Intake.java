@@ -14,7 +14,7 @@ public class Intake extends SubsystemBase {
  
   /** Creates a new Intake. */
   
-  private final CANSparkMax roller = new CANSparkMax(Constants.RollerPort, null);
+  private final CANSparkMax roller = new CANSparkMax(Constants.RollerPort, MotorType.kBrushless);
 
   public Intake() {
     roller.restoreFactoryDefaults();
