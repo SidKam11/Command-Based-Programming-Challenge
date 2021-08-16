@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase {
     roller.set(Constants.OuttakeSpeed);
   }
   
-  public void stopRoller() {
+  public void stop() {
     roller.stopMotor();
   }
 

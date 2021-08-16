@@ -6,9 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.DriveForwardTimed;
+import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -18,12 +22,32 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  
+  //Drivetrain declare
+  private final DriveTrain driveTrain;
+  private final Intake intake;
+  private final Arm arm;
+  private final DriveWithJoysticks driveWithJoystick;
+  private final DriveForwardTimed driveForwardTimed;
+  public static XboxController driverJoystick;
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    driveTrain = new DriveTrain();
+    arm = new Arm();
+    intake = new Intake();
+
+  
+    driveWithJoystick = new DriveWithJoysticks(driveTrain);
+    driveWithJoystick.addRequirements(driveTrain);
+    driveTrain.setDefaultCommand(driveWithJoystick);
+
+    driveForwardTimed = new DriveForwardTimed(driveTrain);
+    driveForwardTimed.addRequirements(driveTrain);
+
+    driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
+    
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -34,7 +58,22 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    JoystickButton intakeButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
+    intakeButton.whenPressed(intake::intake);
+
+    JoystickButton outtakeButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    outtakeButton.whenPressed(intake::outtake);
+
+    JoystickButton stopIntakeButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
+    stopIntakeButton.whenPressed(intake::stop);
+
+    JoystickButton liftArmButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
+    liftArmButton.whileHeld(arm::liftArm);
+
+    JoystickButton lowerArmButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    lowerArmButton.whileHeld(arm::lowerArm);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -43,6 +82,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return driveForwardTimed;
   }
 }
