@@ -8,13 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
-<<<<<<< HEAD
+
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
-=======
-import frc.robot.subsystems.DriveTrain;
->>>>>>> f14e793146f93118f7b8f032c9496ff56da6122f
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -29,11 +26,9 @@ public class RobotContainer {
   
   //Drivetrain declare
   private final DriveTrain driveTrain;
-<<<<<<< HEAD
   private final Intake intake;
   private final Arm arm;
-=======
->>>>>>> f14e793146f93118f7b8f032c9496ff56da6122f
+  
   private final DriveWithJoysticks driveWithJoystick;
   private final DriveForwardTimed driveForwardTimed;
   public static XboxController driverJoystick;
@@ -42,13 +37,9 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     driveTrain = new DriveTrain();
-<<<<<<< HEAD
     arm = new Arm();
     intake = new Intake();
 
-  
-=======
->>>>>>> f14e793146f93118f7b8f032c9496ff56da6122f
     driveWithJoystick = new DriveWithJoysticks(driveTrain);
     driveWithJoystick.addRequirements(driveTrain);
     driveTrain.setDefaultCommand(driveWithJoystick);
