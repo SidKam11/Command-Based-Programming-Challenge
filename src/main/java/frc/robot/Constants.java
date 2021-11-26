@@ -23,8 +23,8 @@ public final class Constants {
 	public static final double liftArmSpeed = 0.1;
 	public static final double lowerArmSpeed = -0.05;
 
-	public static final int ClimberPort = 10;
-	public static final boolean ClimberInvert = false;
+	public static final int ClimberPort = 14;
+	public static final boolean ClimberInvert = true;
 	public static final double liftClimberSpeed = 0.2;
 	public static final double lowerClimberSpeed = -0.05;
 
