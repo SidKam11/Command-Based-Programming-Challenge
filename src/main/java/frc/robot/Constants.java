@@ -20,8 +20,13 @@ public final class Constants {
 	
 	public static final int ArmPort = 5;
 	public static final boolean ArmInvert = true;
-	public static double liftArmSpeed = 0.1;
+	public static final double liftArmSpeed = 0.1;
 	public static final double lowerArmSpeed = -0.05;
+
+	public static final int ClimberPort = 10;
+	public static final boolean ClimberInvert = false;
+	public static final double liftClimberSpeed = 0.2;
+	public static final double lowerClimberSpeed = -0.05;
 
 	public static final int LEFT_FRONT = 3;
     public static final int RIGHT_FRONT = 1;
@@ -33,4 +38,13 @@ public final class Constants {
 	public static final double DRIVE_FORWARD_TIME = 0.0;
 	public static final double AUTONOMOUS_SPEED = 0.0;
 	public static final int JOYSTICK_NUMBER = 0;
+	public static final int intakeButtonPort = 3;
+	public static final int outakeButtonPort = 4;
+	public static final int stopIntakeButtonPort = 2;
+	public static final int liftArmButtonPort = 5;
+	public static final int lowerArmButtonPort = 6;
+	public static final int stopArmButtonPort = 7;
+	public static final int liftClimberButtonPort = 9;
+	public static final int lowerClimberButtonPort = 10;
+	public static final int stopClimberButtonPort = 11;
 }

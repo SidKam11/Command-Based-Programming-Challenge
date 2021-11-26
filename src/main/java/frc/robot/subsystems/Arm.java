@@ -18,6 +18,7 @@ public class Arm extends SubsystemBase {
 
     arm.setInverted(Constants.ArmInvert);
   }
+  
   public void liftArm() {
     arm.set(Constants.liftArmSpeed);
   }

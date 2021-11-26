@@ -5,11 +5,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,6 +30,7 @@ public class RobotContainer {
   private final DriveTrain driveTrain;
   private final Intake intake;
   private final Arm arm;
+  private final Climber climber;
   
   private final DriveWithJoysticks driveWithJoystick;
   private final DriveForwardTimed driveForwardTimed;
@@ -39,6 +42,7 @@ public class RobotContainer {
     driveTrain = new DriveTrain();
     arm = new Arm();
     intake = new Intake();
+    climber = new Climber();
 
     driveWithJoystick = new DriveWithJoysticks(driveTrain);
     driveWithJoystick.addRequirements(driveTrain);
@@ -59,21 +63,35 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+
+   //XboxController.Button.kBumperRight.value
   private void configureButtonBindings() {
-    JoystickButton intakeButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
+    JoystickButton intakeButton = new JoystickButton(driverJoystick, Constants.intakeButtonPort);
     intakeButton.whenPressed(intake::intake);
 
-    JoystickButton outtakeButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    JoystickButton outtakeButton = new JoystickButton(driverJoystick, Constants.outakeButtonPort);
     outtakeButton.whenPressed(intake::outtake);
 
-    JoystickButton stopIntakeButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
+    JoystickButton stopIntakeButton = new JoystickButton(driverJoystick, Constants.stopIntakeButtonPort);
     stopIntakeButton.whenPressed(intake::stop);
 
-    JoystickButton liftArmButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
+    JoystickButton liftArmButton = new JoystickButton(driverJoystick, Constants.liftArmButtonPort);
     liftArmButton.whileHeld(arm::liftArm);
 
-    JoystickButton lowerArmButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    JoystickButton lowerArmButton = new JoystickButton(driverJoystick, Constants.lowerArmButtonPort);
     lowerArmButton.whileHeld(arm::lowerArm);
+
+    JoystickButton stopArmButton = new JoystickButton(driverJoystick, Constants.stopArmButtonPort);
+    stopArmButton.whileHeld(arm::stop);
+
+    JoystickButton liftClimberButton = new JoystickButton(driverJoystick, Constants.liftClimberButtonPort);
+    liftClimberButton.whileHeld(climber::liftClimber);
+
+    JoystickButton lowerClimberButton = new JoystickButton(driverJoystick, Constants.lowerClimberButtonPort);
+    lowerClimberButton.whileHeld(climber::lowerClimber);
+    
+    JoystickButton stopClimberButton = new JoystickButton(driverJoystick, Constants.stopClimberButtonPort);
+    stopClimberButton.whileHeld(climber::stop);
   }
 
   /**
