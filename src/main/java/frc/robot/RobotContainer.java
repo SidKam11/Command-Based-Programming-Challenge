@@ -86,12 +86,14 @@ public class RobotContainer {
 
     JoystickButton liftClimberButton = new JoystickButton(driverJoystick, Constants.liftClimberButtonPort);
     liftClimberButton.whileHeld(climber::liftClimber);
+    liftClimberButton.whenReleased(climber::stop);
 
     JoystickButton lowerClimberButton = new JoystickButton(driverJoystick, Constants.lowerClimberButtonPort);
     lowerClimberButton.whileHeld(climber::lowerClimber);
+    lowerClimberButton.whenReleased(climber::stop);
     
     JoystickButton stopClimberButton = new JoystickButton(driverJoystick, Constants.stopClimberButtonPort);
-    stopClimberButton.whileHeld(climber::stop);
+    stopClimberButton.whenPressed(climber::stop);
   }
 
   /**

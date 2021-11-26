@@ -25,11 +25,11 @@ public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
   public DriveTrain() {
     leftFront = new WPI_TalonFX(Constants.LEFT_FRONT);
-    leftFront.setInverted(TalonFXInvertType.CounterClockwise);
+    leftFront.setInverted(TalonFXInvertType.Clockwise);
     rightFront = new WPI_TalonFX(Constants.RIGHT_FRONT);
     rightFront.setInverted(TalonFXInvertType.Clockwise);
     leftBack = new WPI_TalonFX(Constants.LEFT_BACK);
-    leftBack.setInverted(TalonFXInvertType.CounterClockwise);
+    leftBack.setInverted(TalonFXInvertType.Clockwise);
     rightBack = new WPI_TalonFX(Constants.RIGHT_BACK);
     rightBack.setInverted(TalonFXInvertType.Clockwise);
 
